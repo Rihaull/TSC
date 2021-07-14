@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="tele_form_view">
+        <field name="name">tele.form</field>
+        <field name="model">tsc.tele</field>
+        <field name="arch" type="xml">
+            <form string="Tele Form">
+                    <group>
+                        <field name="model" />
+                        <field name="prix_HTVA" />
+                    </group>
+                    <group>
+                      <field name="resolution_x"/>
+                      <field name="resolution_y"/>
+                    </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="tele_tree_view">
+        <field name="name">tele.tree</field>
+        <field name="model">tsc.tele</field>
+        <field name="arch" type="xml">
+            <tree string="Tele Tree">
+                <field name="model"/>
+                <field name="resolution"/>
+                <field name="prix_HTVA"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="stock_tree_view">
+        <field name="name">stock.tree</field>
+        <field name="model">tsc.inventory</field>
+        <field name="arch" type="xml">
+            <tree string="Tele Tree">
+                <field name="tele"/>
+                <field name="quantity"/>
+                <field name="expo"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="stock_form_view">
+        <field name="name">stock.form</field>
+        <field name="model">tsc.inventory</field>
+        <field name="arch" type="xml">
+            <form string="Tele Form">
+                <group>
+                    <field name="tele"/>
+                </group>
+                <group>
+                    <field name="quantity"/>
+                    <field name="expo"/>
+                </group>
+            </form>
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="vendor_tree_view">
+        <field name="name">vendor.tree</field>
+        <field name="model">tsc.vendors</field>
+        <field name="arch" type="xml">
+            <tree string="Vendor Tree">
+                <field name="lastname"/>
+                <field name="first_name"/>
+                <field name="manager"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="vendor_form_view">
+        <field name="name">vendor.form</field>
+        <field name="model">tsc.vendors</field>
+        <field name="arch" type="xml">
+            <form string="Vendor Form">
+                    <group>
+                        <field name="lastname"/>
+                        <field name="first_name"/>
+                    </group>
+                    <group>
+                        <field name="manager"/>
+                    </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sales_tree_view">
+        <field name="name">sales.tree</field>
+        <field name="model">tsc.sales</field>
+        <field name="arch" type="xml">
+            <tree string="Sales Tree">
+                <field name="stock"/>
+                <field name="vendor"/>
+                <field name="quanti"/>
+                <field name="prix_total"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sales_form_view">
+        <field name="name">sales.form</field>
+        <field name="model">tsc.sales</field>
+        <field name="arch" type="xml">
+            <form string="Sales Form">
+                    <group>
+                        <field name="stock"/>
+                        <field name="vendor"/>
+                        <field name="quanti"/>
+                    </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="tele_list_action">
+      <field name="name">Liste des Téléviseurs</field>
+      <field name="res_model">tsc.tele</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+          <p class="oe_view_nocontent_create">Enregistrez le premier téléviseur.</p>
+      </field>
+  </record>
+
+  <record id="stock_list_action" model="ir.actions.act_window">
+      <field name="name">Stock</field>
+      <field name="res_model">tsc.inventory</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+          <p class="oe_view_nocontent_create">Enregistrez le premier article en stock.</p>
+      </field>
+    </record>
+    
+    <record id="vendor_list_action" model="ir.actions.act_window">
+        <field name="name">Vendeurs</field>
+        <field name="res_model">tsc.vendors</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Enregistrez le premier vendeur.</p>
+        </field>
+      </record>
+
+    <record id="sales_list_action" model="ir.actions.act_window">
+        <field name="name">Ventes</field>
+        <field name="res_model">tsc.sales</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Enregistrez la première vente.</p>
+        </field>
+    </record>
+
+    <menuitem id="main_TSC_menu" name="TSC" />
+    <menuitem id="tsc_menu" name="TSC" parent="main_TSC_menu" />
+    <menuitem id="articles_menu" name="Liste Téléviseurs" parent="tsc_menu" action="tele_list_action"/>
+    <menuitem id="inventory_menu" name="Stock" parent="tsc_menu" action="stock_list_action"/>
+    <menuitem id="vendors_menu" name="Vendeurs" parent="tsc_menu" action="vendor_list_action"/>
+    <menuitem id="sales_menu" name="Ventes" parent="tsc_menu" action="sales_list_action"/>
+</odoo>
